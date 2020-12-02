@@ -40,9 +40,13 @@ function startQuiz() {
             ]
         }
     ];
+    
     var gametime = document.getElementById("time");
     var secondsleft = 20;
-
+    
+    var gamescore = document.getElementById("score");
+    var score = 100
+    gamescore.textContent = score
     thequiz();
 
     startTimer();
@@ -77,14 +81,15 @@ function startQuiz() {
 
             //IF FIRST ANSWER IS MOVE TO NEXT QUESTIONS
             if (
-                document.getElementById("frogs").addEventListener("click", function(){wrongAns()}),
+                document.getElementById("frogs").addEventListener("click", function(){wrongAns()}, function(){nextQues}),
                 document.getElementById("lizards").addEventListener("click", function(){nextQues()}),
                 document.getElementById("tadpols").addEventListener("click", function(){nextQues()})
             );
             
                 function wrongAns(){
-                nextQues();
                 secondsleft -= 5;
+                score -= 10;
+                gamescore.textContent = score
                 }
             
                 function nextQues(){
@@ -139,7 +144,5 @@ function startQuiz() {
     console.log(document.getElementById("lizards").value)  
         
 }
-
-//clicking on a false value
 
 
