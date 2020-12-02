@@ -41,47 +41,58 @@ function startQuiz() {
         }
     ];
 
-    thequiz(questions);
+    thequiz();
 
-    function thequiz(questions){
         // FIRST SET OF QUESTIONS
-        for (var i = 0; i < questions.length; i++){
-            questions.forEach(question => {
-            document.getElementById("questionTitle").innerText = questions[0].question; });
-        }
-        // FIRST SET OF ANSWERS
-        if (true === true){
-            var answerbtn1 = document.createElement("button")
-            answerbtn1.classList.add("btn", "btn-secondary", "answerbtn-1");
-            answerbtn1.innerHTML = questions[0].answers[0].text;
-            document.getElementById("answers").appendChild(answerbtn1);
-            var answerbtn2 = document.createElement("button")
-            answerbtn2.classList.add("btn", "btn-secondary");
-            answerbtn2.innerHTML = questions[0].answers[1].text;
-            document.getElementById("answers").appendChild(answerbtn2);
-            var answerbtn3 = document.createElement("button")
-            answerbtn3.classList.add("btn", "btn-secondary");
-            answerbtn3.innerHTML = questions[0].answers[2].text;
-            document.getElementById("answers").appendChild(answerbtn3);  
-            
-            // IF CORRECT ANSWER IS CHOSEN 
-            if (answerbtn1.addEventListener("click" , function() {
-                document.body.style.backgroundColor = "black"
-            }));
-        
-        }
-    }
-}
-    //QUESTIONS ARE RANDOMLY CHOSEN
-    // function randomQuestion(){
-        
-        //RANDOMIZE QUESTION AND ANSWERS
-            //QUESTION
-        // shufflequest = questions.sort(() => Math.random() - .5);
-        // document.getElementById("questionTitle").innerText = shufflequest[0].question;
-            //ANSWER
-        // shuffleanswer = shufflequest[0].answers.sort(() => Math.random() - .5);
-    // }
-    
+        function thequiz(){
 
-    // document.getElementById("answerbtn1").addEventListener("click",);
+            //FILLS IN RESPECTED INFORMATION TO BEGIN GAME
+            for (let i = 0; i < 3; i++) {
+                document.getElementById("questionTitle").innerHTML = questions[0].question;
+                var answerbtn1 = document.createElement("button"); 
+                answerbtn1.classList.add("btn", "btn-secondary", "answerbtn");
+                answerbtn1.innerHTML = questions[0].answers[i].text;
+                answerbtn1.value = questions[0].answers[i].correct;
+                answerbtn1.setAttribute("id", questions[0].answers[i].text);
+                document.getElementById("answers").appendChild(answerbtn1);            
+            }
+
+            //IF FROGS IS SELECTED
+            if (document.getElementById("frogs").addEventListener("click", function(){
+                
+                document.getElementById("questionTitle").innerHTML = questions[1].question;
+                document.getElementById("frogs").innerHTML = questions[1].answers[0].text;
+                document.getElementById("lizards").innerHTML = questions[1].answers[1].text;
+                document.getElementById("tadpols").innerHTML = questions[1].answers[2].text; }),
+            
+            //IF LIZARDS
+                document.getElementById("lizards").addEventListener("click", function(){
+
+                document.getElementById("questionTitle").innerHTML = questions[1].question;
+                document.getElementById("frogs").innerHTML = questions[1].answers[0].text;
+                document.getElementById("lizards").innerHTML = questions[1].answers[1].text;
+                document.getElementById("tadpols").innerHTML = questions[1].answers[2].text;}),
+
+            //IF TADPOLS
+                document.getElementById("tadpols").addEventListener("click", function(){
+
+                document.getElementById("questionTitle").innerHTML = questions[1].question;
+                document.getElementById("frogs").innerHTML = questions[1].answers[0].text;
+                document.getElementById("lizards").innerHTML = questions[1].answers[1].text;
+                document.getElementById("tadpols").innerHTML = questions[1].answers[2].text;})
+                
+            );
+
+        }
+
+        
+    
+    console.log(document.getElementById("frogs").value)
+    console.log(document.getElementById("tadpols").value)
+    console.log(document.getElementById("lizards").value)  
+        
+}
+
+//clicking on a false value
+
+
