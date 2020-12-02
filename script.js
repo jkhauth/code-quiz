@@ -40,11 +40,30 @@ function startQuiz() {
             ]
         }
     ];
+    var gametime = document.getElementById("time");
+    var secondsleft = 10;
 
     thequiz();
 
         // FIRST SET OF QUESTIONS
         function thequiz(){
+            
+            startTimer();
+
+            function startTimer(){
+                var timerInterval = setInterval(function(){
+                    secondsleft--;
+                    gametime.textContent = secondsleft + " seconds left"
+                
+
+                if(secondsleft === 0){
+                    clearInterval(timerInterval);
+                    document.getElementById("questionBox").classList.add("hide")
+                }
+            }, 1000);
+            }
+
+
 
             //FILLS IN RESPECTED INFORMATION TO BEGIN GAME
             for (let i = 0; i < 3; i++) {
