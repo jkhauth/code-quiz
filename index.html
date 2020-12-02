@@ -11,26 +11,32 @@
 </head>
 
 <body class="container text-center">
-    <h1>iExam</h1>
+    <h1 >iExam</h1>
     <div>
         <h1>Welcome to Your i-Exam</h1>
         <p>Take an i-exam to make sure your interactive coding is up to speed! The more questions you get right, the
             more time you get. The more questions you get wrong, the less time you get.</p>
     </div>
-    <div class="card mt-3" id="quesbox">
-        <div class="card-header feature-title">
+    
+    <br>
+    <!--CARD 1-->
+    <div class="card mt-3 hide" id="questionBox">
+        <div class="card-header feature-title" id="questionTitle">
             Featured Title
         </div>
-        <ul class="list-group list-group-flush btn-group btn-group-toggle" data-toggle="buttons" id="questionBox">
-            <li class="list-group-item list-item-a">
-                <input type="radio" name="options" id="option1"> List Item A</li>
-            <li class="list-group-item list-item-b ">
-                <input type="radio" name="options" id="option2"> List Item B</li>
-            <li class="list-group-item list-item-c ">
-                <input type="radio" name="options" id="option3"> List Item C</li>
-        </ul>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <button class="btn btn-secondary" id="first-answer">
+                 List Item A</button>
+                <button class="btn btn-secondary" >
+                    List Item B</button>
+                    <button class="btn btn-secondary" >
+                         List Item C</button>
+        </div>
         
     </div>
+
+    <br>
+
     <input class="btn btn-primary" type="button" onclick="startQuiz()" value="Start">
 
 
