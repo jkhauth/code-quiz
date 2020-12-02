@@ -41,30 +41,29 @@ function startQuiz() {
         }
     ];
     var gametime = document.getElementById("time");
-    var secondsleft = 10;
+    var secondsleft = 20;
 
     thequiz();
+
+    startTimer();
+
+        //GAME TIMER
+        function startTimer(){
+        var timerInterval = setInterval(function(){
+            secondsleft--;
+            gametime.textContent = secondsleft + " seconds left"
+        
+        if(secondsleft === 5){
+            clearInterval(timerInterval);
+            document.getElementById("questionBox").classList.add("hide")
+        }
+        }, 1000);
+    
+    }
 
         // FIRST SET OF QUESTIONS
         function thequiz(){
             
-            startTimer();
-
-            function startTimer(){
-                var timerInterval = setInterval(function(){
-                    secondsleft--;
-                    gametime.textContent = secondsleft + " seconds left"
-                
-
-                if(secondsleft === 0){
-                    clearInterval(timerInterval);
-                    document.getElementById("questionBox").classList.add("hide")
-                }
-            }, 1000);
-            }
-
-
-
             //FILLS IN RESPECTED INFORMATION TO BEGIN GAME
             for (let i = 0; i < 3; i++) {
                 document.getElementById("questionTitle").innerHTML = questions[0].question;
@@ -76,16 +75,19 @@ function startQuiz() {
                 document.getElementById("answers").appendChild(answerbtn1);            
             }
 
-            //IF FIRST ANSWER IS SELECTED
+            //IF FIRST ANSWER IS MOVE TO NEXT QUESTIONS
             if (
-                document.getElementById("frogs").addEventListener("click", function(){nextQues()}),
+                document.getElementById("frogs").addEventListener("click", function(){wrongAns()}),
                 document.getElementById("lizards").addEventListener("click", function(){nextQues()}),
                 document.getElementById("tadpols").addEventListener("click", function(){nextQues()})
             );
-
-
-
-            function nextQues(){
+            
+                function wrongAns(){
+                nextQues();
+                secondsleft -= 5;
+                }
+            
+                function nextQues(){
 
                 document.getElementById("frogs").classList.add("hide");
                 document.getElementById("lizards").classList.add("hide");
@@ -122,10 +124,12 @@ function startQuiz() {
                         answerbtn1.setAttribute("id", questions[2].answers[i].text);
                         document.getElementById("answers").appendChild(answerbtn1);            
                     }
-                } 
-            }
 
-  
+                
+                
+                
+                } 
+            }     
         }
 
         
