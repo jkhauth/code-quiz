@@ -1,10 +1,12 @@
 
-var quiz = document.getElementById("questionBox")
+var quiz = document.getElementById("questionBox");
+var start = document.getElementById("start-button");
 
 function startQuiz() {
 
     //WHEN BUTTON IS CLICKED HIDE CLASS GOES AWAY
     quiz.classList.remove("hide")
+    start.classList.add("hide");
 
     //QUESTIONS AND ANSWERS
     const questions = [
@@ -38,19 +40,34 @@ function startQuiz() {
     randomQuestion();
 
     function randomQuestion(){
+        
+        //RANDOM QUESTION
         shufflequest = questions.sort(() => Math.random() - .5);
         currquestIndex = 0;
-        document.getElementById("questionTitle").innerText = shufflequest[0].question
-        var newanswer = document.createElement("button");
-        var answertext = document.createTextNode(shufflequest[0].answers.text);
-        document.getElementById("first-answer").innerText = newanswer.appendChild(answertext);
+        document.getElementById("questionTitle").innerText = shufflequest[0].question; 
+        
+
         console.log(shufflequest[0].question);
-        console.log(answertext);
+        console.log(shufflequest[0].answers[0].text);
     }
     
-    
-    
-    //QUESTIONS AND ANSWERS TO QUIZ
+    newAnswers();
+        function newAnswers(){    
+        var answerbtn = document.createElement("button");
+        answerbtn.classList.add("btn", "btn-secondary")
+        answerbtn.innerHTML = shufflequest[0].answers[0].text;
+        document.getElementById("answers").appendChild(answerbtn);
+        
+        var answerbtn = document.createElement("button");
+        answerbtn.classList.add("btn", "btn-secondary")
+        answerbtn.innerHTML = shufflequest[0].answers[1].text;
+        document.getElementById("answers").appendChild(answerbtn);
+        
+        var answerbtn = document.createElement("button");
+        answerbtn.classList.add("btn", "btn-secondary")
+        answerbtn.innerHTML = shufflequest[0].answers[2].text;
+        document.getElementById("answers").appendChild(answerbtn);
+    }
 
     
     // var questionBox = document.getElementById("option1");
