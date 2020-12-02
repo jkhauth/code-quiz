@@ -57,32 +57,56 @@ function startQuiz() {
                 document.getElementById("answers").appendChild(answerbtn1);            
             }
 
-            //IF FROGS IS SELECTED
-            if (document.getElementById("frogs").addEventListener("click", function(){
-                
-                document.getElementById("questionTitle").innerHTML = questions[1].question;
-                document.getElementById("frogs").innerHTML = questions[1].answers[0].text;
-                document.getElementById("lizards").innerHTML = questions[1].answers[1].text;
-                document.getElementById("tadpols").innerHTML = questions[1].answers[2].text; }),
-            
-            //IF LIZARDS
-                document.getElementById("lizards").addEventListener("click", function(){
-
-                document.getElementById("questionTitle").innerHTML = questions[1].question;
-                document.getElementById("frogs").innerHTML = questions[1].answers[0].text;
-                document.getElementById("lizards").innerHTML = questions[1].answers[1].text;
-                document.getElementById("tadpols").innerHTML = questions[1].answers[2].text;}),
-
-            //IF TADPOLS
-                document.getElementById("tadpols").addEventListener("click", function(){
-
-                document.getElementById("questionTitle").innerHTML = questions[1].question;
-                document.getElementById("frogs").innerHTML = questions[1].answers[0].text;
-                document.getElementById("lizards").innerHTML = questions[1].answers[1].text;
-                document.getElementById("tadpols").innerHTML = questions[1].answers[2].text;})
-                
+            //IF FIRST ANSWER IS SELECTED
+            if (
+                document.getElementById("frogs").addEventListener("click", function(){nextQues()}),
+                document.getElementById("lizards").addEventListener("click", function(){nextQues()}),
+                document.getElementById("tadpols").addEventListener("click", function(){nextQues()})
             );
 
+
+
+            function nextQues(){
+
+                document.getElementById("frogs").classList.add("hide");
+                document.getElementById("lizards").classList.add("hide");
+                document.getElementById("tadpols").classList.add("hide");
+
+                for (let i = 0; i < 3; i++) {
+                    document.getElementById("questionTitle").innerHTML = questions[1].question;
+                    var answerbtn1 = document.createElement("button"); 
+                    answerbtn1.classList.add("btn", "btn-secondary", "answerbtn");
+                    answerbtn1.innerHTML = questions[1].answers[i].text;
+                    answerbtn1.value = questions[1].answers[i].correct;
+                    answerbtn1.setAttribute("id", questions[1].answers[i].text);
+                    document.getElementById("answers").appendChild(answerbtn1);            
+                }
+                
+                if (
+                    document.getElementById("ff48").addEventListener("click", function(){nextQues2()}),
+                    document.getElementById("fd5").addEventListener("click", function(){nextQues2()}),
+                    document.getElementById("cheeeta6").addEventListener("click", function(){nextQues2()})
+                );
+                
+                function nextQues2(){
+    
+                    document.getElementById("ff48").classList.add("hide");
+                    document.getElementById("fd5").classList.add("hide");
+                    document.getElementById("cheeeta6").classList.add("hide");
+    
+                    for (let i = 0; i < 3; i++) {
+                        document.getElementById("questionTitle").innerHTML = questions[2].question;
+                        var answerbtn1 = document.createElement("button"); 
+                        answerbtn1.classList.add("btn", "btn-secondary", "answerbtn");
+                        answerbtn1.innerHTML = questions[2].answers[i].text;
+                        answerbtn1.value = questions[2].answers[i].correct;
+                        answerbtn1.setAttribute("id", questions[2].answers[i].text);
+                        document.getElementById("answers").appendChild(answerbtn1);            
+                    }
+                } 
+            }
+
+  
         }
 
         
