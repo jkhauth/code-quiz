@@ -1,13 +1,44 @@
 var quiz = document.getElementById("questionBox");
 var start = document.getElementById("start-button");
+var gametime = document.getElementById("time");
+var secondsleft = 10;
+var gamescore = document.getElementById("score");
+var scoreBoard = document.getElementById("scoreBoard")
+var score = 100
+gamescore.textContent = score
+
+var highscores = [];
+var highscore = document.getElementById("highscore");
+var highscoreInput = document.getElementById("highscoreInput");
+var saveHighscore = document.getElementById("saveHighscore");
+var highscoreList = document.getElementById("scores");
+
+
+highscore.addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    highscoreText = highscoreInput.value
+    if (highscoreText === "") {
+        return;
+    }
+
+    highscores.push(highscoreText);
+    localStorage.setItem("High Score", JSON.stringify(highscores));
+    highscoreInput.value = "";
+}
+);
+
 
 // STARTS QUIZ
 function startQuiz() {
 
     // WHEN START BUTTON IS CLICKED IT GOES AWAY
     quiz.classList.remove("hide")
+    scoreBoard.classList.add("hide")
     start.classList.add("hide");
-
+    highscoreInput.classList.add("hide");
+    saveHighscore.classList.add("hide");
+    
     // QUESTIONS - ANSWERS - SCORE - TIME
     var questions = [
         {
@@ -36,14 +67,6 @@ function startQuiz() {
         }
     ];
 
-    var gametime = document.getElementById("time");
-    var secondsleft = 20;
-
-    var gamescore = document.getElementById("score");
-    var score = 100
-    gamescore.textContent = score
-
-
     thequiz();
 
     startTimer();
@@ -52,11 +75,14 @@ function startQuiz() {
     function startTimer() {
         var timerInterval = setInterval(function () {
             secondsleft--;
-            gametime.textContent = secondsleft + " seconds left"
+            gametime.textContent = secondsleft + " seconds left";
 
-            if (secondsleft === 5) {
+            //DISPLAY HIGHSCORE WHEN TIME RUNS OUT
+            if (secondsleft === 0) {
                 clearInterval(timerInterval);
-                document.getElementById("questionBox").classList.add("hide")
+                scoreBoard.classList.remove("hide");
+                highscoreInput.classList.remove("hide");
+                saveHighscore.classList.remove("hide");
             }
         }, 1000);
 
@@ -136,10 +162,6 @@ function thequiz() {
 
 
 
-    console.log(document.getElementById("frogs").value)
-    console.log(document.getElementById("tadpols").value)
-    console.log(document.getElementById("lizards").value)
-
+console.log(localStorage)
 }
-
 
