@@ -54,27 +54,27 @@ function startQuiz() {
     // QUESTIONS - ANSWERS - SCORE - TIME
     var questions = [
         {
-            question: "ampihans?",
+            question: "Which is NOT a program language",
             answers: [
-                { text: "frogs", correct: true },
-                { text: "lizards", correct: false },
-                { text: "tadpols", correct: false }
+                { text: "HTML"},
+                { text: "CSS"},
+                { text: "ENGLISH"}
             ]
         },
         {
-            question: "What is 23+2?",
+            question: "Which is a tag for heading title?",
             answers: [
-                { text: "ff48", correct: true },
-                { text: "fd5", correct: false },
-                { text: "cheeeta6", correct: false }
+                { text: "H1"},
+                { text: "P"},
+                { text: "DIV"}
             ]
         },
         {
-            question: "What is 25+2?",
+            question: "How do you call a class in CSS?",
             answers: [
-                { text: "crocks41", correct: true },
-                { text: "pans5", correct: false },
-                { text: "peters6", correct: false }
+                { text: ".EXAMPLE"},
+                { text: "#EXAMPLE"},
+                { text: "EXAMPLE"}
             ]
         }
     ];
@@ -91,10 +91,10 @@ function startQuiz() {
 
             //DISPLAY HIGHSCORE WHEN TIME RUNS OUT
             if (secondsleft === 0) {
-                clearInterval(timerInterval);
-                scoreBoard.classList.remove("hide");
-                highscoreInput.classList.remove("hide");
-                saveHighscore.classList.remove("hide");
+                   clearInterval(timerInterval);
+                    scoreBoard.classList.remove("hide");
+                    highscoreInput.classList.remove("hide");
+                    saveHighscore.classList.remove("hide");
             }
         }, 1000);
 
@@ -106,6 +106,10 @@ function startQuiz() {
     score -= 10;
     gamescore.textContent = score
     }
+    function rightAns() {
+        score += 10;
+        gamescore.textContent = score
+        }
     
     // FIRST SET OF QUESTIONS
 function thequiz() {
@@ -123,9 +127,9 @@ function thequiz() {
 
     // IF FIRST ANSWER IS MOVE TO NEXT QUESTIONS
     if (
-        document.getElementById("frogs").addEventListener("click", function () {wrongAns()},function(){nextQues}),
-        document.getElementById("lizards").addEventListener("click", function () { nextQues() }),
-        document.getElementById("tadpols").addEventListener("click", function () { nextQues() })
+        document.getElementById("HTML").addEventListener("click", function () {rightAns()},function(){nextQues}),
+        document.getElementById("CSS").addEventListener("click", function () {wrongAns()},function(){nextQues}),
+        document.getElementById("ENGLISH").addEventListener("click", function () {wrongAns()},function(){nextQues})
         );
 
 
@@ -133,9 +137,9 @@ function thequiz() {
     // MOVES TO NEXT SET OF QUESTIONS
     function nextQues() {
 
-        document.getElementById("frogs").classList.add("hide");
-        document.getElementById("lizards").classList.add("hide");
-        document.getElementById("tadpols").classList.add("hide");
+        document.getElementById("HTML").classList.add("hide");
+        document.getElementById("CSS").classList.add("hide");
+        document.getElementById("ENGLISH").classList.add("hide");
             for (let i = 0; i < 3; i++) {
                 document.getElementById("questionTitle").innerHTML = questions[1].question;
                 var answerbtn1 = document.createElement("button");
@@ -147,16 +151,16 @@ function thequiz() {
             }
 
             if (
-                document.getElementById("ff48").addEventListener("click", function () { nextQues2() }),
-                document.getElementById("fd5").addEventListener("click", function () { nextQues2() }),
-                document.getElementById("cheeeta6").addEventListener("click", function () { nextQues2() })
+                document.getElementById("H1").addEventListener("click", function () {rightAns()},function(){nextQues}),
+                document.getElementById("P").addEventListener("click", function () {wrongAns()},function(){nextQues}),
+                document.getElementById("DIV").addEventListener("click", function () {wrongAns()},function(){nextQues2})
             );
 
             // MOVES TO NEXT SET OF QUESTIONS
             function nextQues2() {
-                document.getElementById("ff48").classList.add("hide");
-                document.getElementById("fd5").classList.add("hide");
-                document.getElementById("cheeeta6").classList.add("hide");
+                document.getElementById("H1").classList.add("hide");
+                document.getElementById("P").classList.add("hide");
+                document.getElementById("DIV").classList.add("hide");
 
                 for (let i = 0; i < 3; i++) {
                     document.getElementById("questionTitle").innerHTML = questions[2].question;
@@ -168,10 +172,15 @@ function thequiz() {
                     document.getElementById("answers").appendChild(answerbtn1);
                 }
 
+                if (
+                    document.getElementById(".EXAMPLE").addEventListener("click", function () {rightAns()},function(){gameover}),
+                    document.getElementById("#EXAMPLE").addEventListener("click", function () {wrongAns()},function(){gameover}),
+                    document.getElementById("EXAMPLE").addEventListener("click", function () {wrongAns()},function(){gameover})
+                );
+
             } //END OF nextQues2 FUNCTION
     } // END OF nextQues FUNCTION
 } //END OF THEQUIZ FUNCTION
-
 
 
 console.log(localStorage)

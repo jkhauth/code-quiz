@@ -2,3 +2,11 @@
     display: none;
 }
 
+body {
+    background-color: black;
+    color: white;
+}
+
+.card-header , .card-body, #highscore{
+    background-color: grey !important;
+}
