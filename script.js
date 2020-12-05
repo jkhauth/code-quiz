@@ -8,26 +8,38 @@ var score = 100
 gamescore.textContent = score
 
 var highscores = [];
-var highscore = document.getElementById("highscore");
-var highscoreInput = document.getElementById("highscoreInput");
-var saveHighscore = document.getElementById("saveHighscore");
-var highscoreList = document.getElementById("scores");
+var highscore = document.getElementById("highscore"); //form
+var highscoreInput = document.getElementById("highscoreInput"); //user input
+var saveHighscore = document.getElementById("saveHighscore"); //submit highscore
+var highscoreList = document.getElementById("scores"); // ul list
+var savedScores = localStorage.getItem("High Score")
+console.log(highscores)
+console.log(savedScores)
 
+var scoretextold = document.createElement("p");
+scoretextold.innerText = savedScores
+highscoreList.appendChild(scoretextold)
 
+//CURRENTLY SETS EVERYTHING INTO A STRING
 highscore.addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    highscoreText = highscoreInput.value
-    if (highscoreText === "") {
-        return;
-    }
-
-    highscores.push(highscoreText);
-    localStorage.setItem("High Score", JSON.stringify(highscores));
-    highscoreInput.value = "";
+event.preventDefault();
+if (savedScores === 0 || null){
+    savedScores = highscoreInput;
+    highscores.slice(1).push(savedScores)
+}
+//EMPTY ARRAY WITH LAST INPUT
+highscores.push(savedScores);
+var scoretext = document.createElement("p");
+scoretext.innerText =" " + "Name: " + " "  + highscoreInput.value + " " + "Score: " + score + " ";
+//USER INPUT WITH LAST INPUT
+highscores.push(" " +"Name: " + "" + highscoreInput.value + " " + "Score: "+ score + " ");
+//USER INPUT + LAST INPUT = NEW VARIABLE
+localStorage.setItem("High Score", (highscores));
+//clears out what is every in the textbox
+highscoreInput.value = "";
+highscoreList.appendChild(scoretext);
 }
 );
-
 
 // STARTS QUIZ
 function startQuiz() {
