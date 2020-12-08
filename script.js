@@ -91,7 +91,7 @@ secondsleft--;
 gametime.textContent = secondsleft + " seconds left";
 
 //DISPLAY HIGHSCORE WHEN TIME RUNS OUT
-if (secondsleft === 0) {
+if (secondsleft === 0 || secondsleft < 0) {
 clearInterval(timerInterval);
 scoreBoard.classList.remove("hide");
 highscoreInput.classList.remove("hide");
